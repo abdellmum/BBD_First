@@ -1,0 +1,71 @@
+ la commande TRUNCATE permet de supprimer toutes les données d’une table sans supprimer la table en elle-même. En d’autres mots, cela permet de purger la table. Cette instruction diffère de la commande DROP qui à pour but de supprimer les données ainsi que la table qui les contient.
+# Step 1 : 
+#1 In the table ‘products’ add a new column called with this description : 
+      Product_origin varchar(50) .
+Alter table products 
+Add Product_origin varchar(50)
+
+#2 what’s the SQL query that allow us to delete a column in a table 
+drop
+
+#3 Pour aller plus loin dans la définition des donnée (LDD) ; on utilise un mot clé commun appelé ‘Truncat’ ? expliquez en quelques ligne le fonctionnement de cette commande et donner un exemple explicatif ?
+ la commande TRUNCATE permet de supprimer toutes les données d’une table sans supprimer la table en elle-même. En d’autres mots, cela permet de purger la table. Cette instruction diffère de la commande DROP qui à pour but de supprimer les données ainsi que la table qui les contient.
+  
+
+#4 Add a unique constraint to the ‘first_name’ and ‘last_name’ column in clients table ? what’s UNIQUE constraint ? 
+=> ALTER TABLE client
+ADD CONSTRAINT U_name UNIQUE (first_name,last_name);
+
+#5 change the column name ‘order_tim’e to ’Date_order’ in the table ‘command’ and change the type to ‘DATETIME’
+
+
+=> ALTER TABLE orders CHANGE time date_orders DATETIME;
+
+#6 delete the column ‘quantity’ from the table ‘command’
+
+ 
+=>ALTER TABLE orders DROP quantity;
+   
+
+
+
+
+
+
+
+
+
+
+# Step 2 : 
+Insert those Data in the table Clients: (attention il faut changer la valeur 'M' par un 'H' comme indiqué sur notre table client
+
+
+INSERT INTO client (first_name, last_name,gender,phone_number) 
+VALUES ('Chris','Martin','M','01123147789'),
+('Emma','Law','F','01123439899'),
+('Mark','Watkins','M','01174592013'),
+('Daniel','Williams','M',NULL),
+('Sarah','Taylor','F','01176348290'),
+('Katie','Armstrong','F','01145787353'),
+('Michael','Bluth','M','01980289282'),
+('Kat','Nash','F','01176987789'),
+('Buster','Bluth','M','01173456782'),
+('Charlie',NULL,'F','01139287883'),
+('Lindsay','Bluth','F','01176923804'),
+('Harry','Johnson','M',NULL),
+('John','Smith','M','01174987221'),
+
+=>Insert those Data in the table Products.
+
+INSERT INTO products (ID_products, name, price,products_origin) 
+VALUES (1,’special coffee’, 7.5,’Brazil’),
+(2,’coffee family’, 8,’Cuba’),
+(13,’coffee 2.0’, 8.5,’Ethopia’),
+(3, ‘animal coffee’,25,’Indonesia’),
+(22,’coffe plus’, 15.5,’Italy’),
+(14,’coffee ++’,30.00,’Maroc’);
+
+
+decimal (3.2)=9.99 //30.00=9.99//
+
+

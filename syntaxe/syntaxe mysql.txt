@@ -1,0 +1,153 @@
+1=> Syntaxe
+
+*Création de la table :
+           CREATE TABLE [IF NOT EXISTS] Nom_table (
+              colonne1 description_colonne1,
+              [colonne2 description_colonne2,
+             colonne3 description_colonne3,
+    ...,]
+//exemple :
+          CREATE TABLE Animal (
+            id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+           espece VARCHAR(40) NOT NULL,
+           sexe CHAR(1),
+         date_naissance DATETIME NOT NULL,
+          nom VARCHAR(30),
+          commentaires TEXT,
+        PRIMARY KEY (id)
+)
+ENGINE=INNODB;
+
+
+*verification
+
+syntaxe:
+SHOW TABLES;      -- liste les tables de la base de données
+
+DESCRIBE Animal;  -- liste les colonnes de la table avec leurs caractéristiques
+
+//////////***MODIFICATION D'UNE TABLE***////////////////////
+
+bref//
+Lorsque l'on modifie une table, on peut vouloir lui ajouter, retirer ou modifier quelque chose.
+ Dans les trois cas, c'est la commande ALTER TABLE  qui sera utilisée, 
+une variante existant pour chacune des opérations :
+  
+*syntaxe:
+ALTER TABLE nom_table ADD ... -- permet d'ajouter quelque chose (une colonne par exemple)
+
+ALTER TABLE nom_table DROP ... -- permet de retirer quelque chose 
+
+ALTER TABLE nom_table CHANGE ...
+ALTER TABLE nom_table MODIFY ... -- permettent de modifier une colonne.
+
+//*ajout:
+
+syntaxe: ALTER TABLE nom_table 
+ADD [COLUMN] nom_colonne description_colonne;
+!!!!!!!!!!exemple:
+ALTER TABLE Test_tuto 
+ADD COLUMN date_insertion DATE NOT NULL;
+
+//*Suppression:
+ syntaxe : ALTER TABLE nom_table 
+DROP [COLUMN] nom_colonne; 
+
+exemple:   ALTER TABLE Test_tuto 
+DROP COLUMN date_insertion; -- Suppression de la colonne date_insertion
+//*modification du column
+
+/*syntaxe: ALTER TABLE nom_table 
+CHANGE ancien_nom nouveau_nom nouvelle_description;
+
+ALTER TABLE nom_table 
+MODIFY nom_colonne nouvelle_description;
+exemple:  ALTER TABLE Test_tuto 
+CHANGE prenom nom VARCHAR(30) NOT NULL; -- Changement du type + changement du nom
+
+ALTER TABLE Test_tuto 
+CHANGE id id BIGINT NOT NULL; -- Changement du type sans renommer
+
+ALTER TABLE Test_tuto
+MODIFY id BIGINT NOT NULL AUTO_INCREMENT; -- Ajout de l'auto-incrémentation
+
+ALTER TABLE Test_tuto 
+MODIFY nom VARCHAR(30) NOT NULL DEFAULT 'Blabla'; -- Changement de la description (même type mais ajout d'une valeur par défaut)
+
+
+N.B La commande ALTER TABLE  permet de modifier une table.
+
+Lorsque l'on ajoute ou modifie une colonne, il faut toujours préciser sa (nouvelle) description complète (type, valeur par défaut, auto-incrément éventuel).
+
+**//////////**INSERTION DES DONEES**//////////**
+1=> sans precision;
+
+INSERT INTO Animal 
+ 1):  VALUES (1, 'chien', 'M', '2010-04-05 13:43:00', 'Rox', 'Mordille beaucoup');  ///ici  sans renseigner les colonnes pour lesquelles on donne une valeur/mysql s'en ocuupe
+
+2):  INSERT INTO Animal 
+VALUES (2, 'chat', NULL, '2010-03-24 02:23:00', 'Roucky', NULL); ///ici null remplace  certain columns
+
+3):  INSERT INTO Animal 
+VALUES (NULL , 'chat', 'F', '2010-09-13 15:02:00', 'Schtroumpfette', NULL);//ici null comme valeur d'ID .(impossible) mysql increment et donne ID a la ligne suivante
+
+2 => avec precision;
+EXEMPLES/
+
+INSERT INTO Animal (espece, sexe, date_naissance) 
+    VALUES ('tortue', 'F', '2009-08-03 05:12:00');
+INSERT INTO Animal (nom, commentaires, date_naissance, espece) 
+    VALUES ('Choupi', 'Né sans oreille gauche', '2010-10-03 16:44:00', 'chat');
+INSERT INTO Animal (espece, date_naissance, commentaires, nom, sexe) 
+    VALUES ('tortue', '2009-06-13 08:17:00', 'Carapace bizarre', 'Bobosse', 'F');
+
+
+autre exemple d'une autre maniere
+
+
+INSERT INTO Animal (espece, sexe, date_naissance, nom) 
+VALUES ('chien', 'F', '2008-12-06 05:18:00', 'Caroline'),
+        ('chat', 'M', '2008-09-11 15:38:00', 'Bagherra'),
+        ('tortue', NULL, '2010-08-23 05:18:00', NULL);
+syntaxe alternative:
+
+INSERT INTO Animal 
+SET nom='Bobo', espece='chien', sexe='M', date_naissance='2010-07-21 15:41:00';
+
+
+//////////////////COMMANDE TRUNCATE///////////////
+
+Cette commande permet la suppression des données de la table, sans supprimer la structure de la table (simplement la vider).
+
+
+
+ EXEMPLE/
+:
+TRUNCATE TABLE t_student; ////// suprimme les donnéé de la table t_student et garde la structure.
+
+
+
+
+
+
+
+
+
+ALTER TABLE client
+ADD CONSTRAINT U_name UNIQUE (first_name,last_name);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
